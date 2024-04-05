@@ -8,7 +8,5 @@ namespace Movie.BL.Models
         [Required, MaxLength(200)]
         public string Name { get; set; }
         public int? ParentCategoryId { get; set; }
-
-        public ICollection<FilmCategoriesDTO> FilmCategories { get; set; }
     }
 }

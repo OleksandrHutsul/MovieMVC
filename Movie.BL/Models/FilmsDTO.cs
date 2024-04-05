@@ -11,7 +11,5 @@ namespace Movie.BL.Models
         public string Director { get; set; }
         [Required, DataType(DataType.Date)]
         public DateTime Release { get; set; }
-
-        public ICollection<FilmCategoriesDTO> FilmCategories { get; set; }
     }
 }

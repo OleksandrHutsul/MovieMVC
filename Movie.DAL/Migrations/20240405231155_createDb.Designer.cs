@@ -12,8 +12,8 @@ using Movie.DAL.Context;
 namespace Movie.DAL.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240403234144_CreateDb")]
-    partial class CreateDb
+    [Migration("20240405231155_createDb")]
+    partial class createDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,9 +38,8 @@ namespace Movie.DAL.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int?>("ParentCategoryId")
-                        .HasMaxLength(200)
-                        .HasColumnType("int");
+                    b.Property<byte?>("ParentCategoryId")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -56,12 +55,6 @@ namespace Movie.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FilmId")
                         .HasColumnType("int");
 
                     b.Property<int>("FilmsId")
@@ -105,13 +98,13 @@ namespace Movie.DAL.Migrations
             modelBuilder.Entity("Movie.DAL.Entities.FilmCategories", b =>
                 {
                     b.HasOne("Movie.DAL.Entities.Categories", "Categories")
-                        .WithMany("FilmCategories")
+                        .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Movie.DAL.Entities.Films", "Films")
-                        .WithMany("FilmCategories")
+                        .WithMany()
                         .HasForeignKey("FilmsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -119,16 +112,6 @@ namespace Movie.DAL.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("Films");
-                });
-
-            modelBuilder.Entity("Movie.DAL.Entities.Categories", b =>
-                {
-                    b.Navigation("FilmCategories");
-                });
-
-            modelBuilder.Entity("Movie.DAL.Entities.Films", b =>
-                {
-                    b.Navigation("FilmCategories");
                 });
 #pragma warning restore 612, 618
         }

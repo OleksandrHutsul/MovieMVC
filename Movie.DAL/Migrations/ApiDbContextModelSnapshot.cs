@@ -54,12 +54,6 @@ namespace Movie.DAL.Migrations
                     b.Property<int>("CategoriesId")
                         .HasColumnType("int");
 
-                    b.Property<byte>("CategoryId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("FilmId")
-                        .HasColumnType("tinyint");
-
                     b.Property<int>("FilmsId")
                         .HasColumnType("int");
 
@@ -101,13 +95,13 @@ namespace Movie.DAL.Migrations
             modelBuilder.Entity("Movie.DAL.Entities.FilmCategories", b =>
                 {
                     b.HasOne("Movie.DAL.Entities.Categories", "Categories")
-                        .WithMany("FilmCategories")
+                        .WithMany()
                         .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Movie.DAL.Entities.Films", "Films")
-                        .WithMany("FilmCategories")
+                        .WithMany()
                         .HasForeignKey("FilmsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -115,16 +109,6 @@ namespace Movie.DAL.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("Films");
-                });
-
-            modelBuilder.Entity("Movie.DAL.Entities.Categories", b =>
-                {
-                    b.Navigation("FilmCategories");
-                });
-
-            modelBuilder.Entity("Movie.DAL.Entities.Films", b =>
-                {
-                    b.Navigation("FilmCategories");
                 });
 #pragma warning restore 612, 618
         }

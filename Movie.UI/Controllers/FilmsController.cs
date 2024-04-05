@@ -5,10 +5,10 @@ using Movie.DAL.Extensions;
 
 namespace Movie.UI.Controllers
 {
-    public class CategoriesController : Controller
+    public class FilmsController : Controller
     {
-        private readonly CategoriesService _service;
-        public CategoriesController(CategoriesService service)
+        private readonly FilmService _service;
+        public FilmsController(FilmService service)
         {
             _service = service;
         }
@@ -19,7 +19,7 @@ namespace Movie.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CategoriesDTO newCategory)
+        public async Task<ActionResult> Create(FilmsDTO newFilms)
         {
             if (!ModelState.IsValid)
             {
@@ -28,13 +28,13 @@ namespace Movie.UI.Controllers
                 {
                     ModelState.AddModelError("", error);
                 }
-                return View(newCategory); 
+                return View(newFilms);
             }
 
             try
             {
-                var createdCategory = await _service.CreateAsync(newCategory);
-                TempData["SuccessMessage"] = "Категорія успішно створено!";
+                var createdFilms = await _service.CreateAsync(newFilms);
+                TempData["SuccessMessage"] = "Фільм успішно створено!";
                 return RedirectToAction("Index");
             }
             catch (DuplicateItemException ex)
@@ -46,7 +46,7 @@ namespace Movie.UI.Controllers
                 ModelState.AddModelError("", ex.Message);
             }
 
-            return View(newCategory);
+            return View(newFilms);
         }
     }
 }
