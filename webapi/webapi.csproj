@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Movie.BL\Movie.BL.csproj" />
+    <ProjectReference Include="..\Movie.DAL\Movie.DAL.csproj" />
+    <ProjectReference Include="..\Movie.UI\Movie.UI.csproj" />
   </ItemGroup>
 
 </Project>

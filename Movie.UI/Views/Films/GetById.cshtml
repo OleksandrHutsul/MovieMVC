@@ -1,0 +1,20 @@
+﻿@model Movie.BL.Models.FilmsDTO
+
+<h2>Category Details</h2>
+
+<div>
+    <h4>Name:</h4>
+    <p>@Model.Name</p>
+</div>
+<div>
+    <h4>Director:</h4>
+    <p>@Model.Director</p>
+</div>
+<div>
+    <h4>Release:</h4>
+    <p>@Model.Release</p>
+</div>
+
+<form asp-controller="Films" asp-action="Index" method="post">
+    <button type="submit" class="btn btn-danger">Return</button>
+</form>

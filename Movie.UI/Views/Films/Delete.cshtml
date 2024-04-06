@@ -1,0 +1,22 @@
+﻿@model Movie.BL.Models.FilmsDTO
+
+<h2>Delete Category</h2>
+
+<form asp-controller="Films" asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <div>
+        <h4>Are you sure you want to delete this category?</h4>
+        <h5>Name:</h5>
+        <p>@Model.Name</p>
+        <h5>Director:</h5>
+        <p>@Model.Director</p>
+        <h5>Release:</h5>
+        <p>@Model.Release</p>
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<form asp-controller="Films" asp-action="Index" method="post">
+    <button type="submit" class="btn btn-danger">Return</button>
+</form>
