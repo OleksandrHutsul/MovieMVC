@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movie.DAL.Context;
+using Movie.DAL.Entities;
 using Movie.DAL.Repositories.Interfaces;
 using Movie.DAL.Specifications;
 using System.Linq.Expressions;
@@ -102,6 +103,11 @@ namespace Movie.DAL.Repositories
                 query = query.OrderByDescending(spec.OrderByDescending);
 
             return query;
+        }
+
+        public async Task<FilmCategories> GetByFilmAndCategoryAsync(int filmsId, int categoryId)
+        {
+            return await _context.FilmCategories.FirstOrDefaultAsync(fc => fc.FilmsId == filmsId && fc.CategoriesId == categoryId);
         }
     }
 }

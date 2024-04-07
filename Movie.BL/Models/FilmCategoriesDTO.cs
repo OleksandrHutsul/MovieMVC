@@ -3,7 +3,7 @@
     public class FilmCategoriesDTO
     {
         public int Id { get; set; }
-        public int FilmId { get; set; }
-        public int CategoryId { get; set; }
+        public int FilmsId { get; set; }
+        public int CategoriesId { get; set; }
     }
 }

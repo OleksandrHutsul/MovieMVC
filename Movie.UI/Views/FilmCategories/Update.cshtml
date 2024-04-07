@@ -1,0 +1,27 @@
+﻿@model Movie.BL.Models.FilmCategoriesDTO
+
+<h2>Edit FilmCategories</h2>
+
+<form asp-controller="FilmCategories" asp-action="Update" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="FilmsId" class="control-label"></label>
+        <input asp-for="FilmsId" class="form-control" />
+        <span asp-validation-for="FilmsId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoriesId" class="control-label"></label>
+        <input asp-for="CategoriesId" class="form-control" />
+        <span asp-validation-for="CategoriesId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<form asp-controller="FilmCategories" asp-action="Index" method="post">
+    <button type="submit" class="btn btn-danger">Return</button>
+</form>

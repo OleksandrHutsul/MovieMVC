@@ -1,0 +1,30 @@
+﻿@model Movie.BL.Models.FilmCategoriesDTO
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<form asp-controller="FilmCategories" asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FilmsId" class="control-label"></label>
+        <input asp-for="FilmsId" class="form-control" />
+        <span asp-validation-for="FilmsId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoriesId" class="control-label"></label>
+        <input asp-for="CategoriesId" class="form-control" />
+        <span asp-validation-for="CategoriesId" class="text-danger"></span>
+    </div>    
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<form asp-controller="FilmCategories" asp-action="Index" method="post">
+    <button type="submit" class="btn btn-danger">Return</button>
+</form>

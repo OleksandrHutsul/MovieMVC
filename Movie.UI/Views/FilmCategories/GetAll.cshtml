@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Movie.BL.Models.FilmCategoriesDTO>
+
+<h2>FilmCategories</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FilmId</th>
+            <th>CategoryId</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FilmsId</td>
+                <td>@item.CategoriesId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-controller="FilmCategories" asp-action="Index" method="post">
+    <button type="submit" class="btn btn-danger">Return</button>
+</form>

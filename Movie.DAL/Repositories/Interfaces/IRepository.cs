@@ -1,4 +1,5 @@
-﻿using Movie.DAL.Specifications;
+﻿using Movie.DAL.Entities;
+using Movie.DAL.Specifications;
 using System.Linq.Expressions;
 
 namespace Movie.DAL.Repositories.Interfaces
@@ -16,5 +17,6 @@ namespace Movie.DAL.Repositories.Interfaces
         Task DeleteByIdAsync(object id);
         Task DeleteRangeAsync(ICollection<TEntity> entities);
         Task<ICollection<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<FilmCategories> GetByFilmAndCategoryAsync(int filmsId, int categoryId);
     }
 }
