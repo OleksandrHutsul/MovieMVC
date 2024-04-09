@@ -121,17 +121,33 @@ namespace Movie.BL.Services
             }
         }
 
-        public async Task<ICollection<FilmsDTO>> GetAllWithCategoriesAsync()
+        public async Task<ICollection<FilmsDTO>> GetAllWithCategoriesAsync(string sortBy)
         {
             var films = await _repository.GetAllWithCategoriesAsync();
+            
+            switch (sortBy)
+            {
+                case "Release":
+                    films = films.OrderBy(f => f.Release).ToList();
+                    break;
+                case "Director":
+                    films = films.OrderBy(f => f.Director).ToList();
+                    break;
+                case "Category":
+                    films = films.OrderBy(f => f.FilmCategories.First().Categories.Name).ToList();
+                    break;
+                default:
+                    break;
+            }
+
             var filmsDTO = _mapper.Map<ICollection<FilmsDTO>>(films);
 
             foreach (var filmDTO in filmsDTO)
             {
                 var categories = films
-                    .Where(f => f.Id == filmDTO.Id)  
-                    .SelectMany(f => f.FilmCategories)  
-                    .Select(fc => fc.Categories.Name)  
+                    .Where(f => f.Id == filmDTO.Id)
+                    .SelectMany(f => f.FilmCategories)
+                    .Select(fc => fc.Categories.Name)
                     .ToList();
 
                 filmDTO.Categories = categories;

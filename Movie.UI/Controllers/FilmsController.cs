@@ -50,11 +50,11 @@ namespace Movie.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ICollection<FilmsDTO>>> GetAll()
+        public async Task<ActionResult<ICollection<FilmsDTO>>> GetAll(string sortBy)
         {
             try
             {
-                var films = await _service.GetAllWithCategoriesAsync();
+                var films = await _service.GetAllWithCategoriesAsync(sortBy);
                 return View(films);
             }
             catch (ServerErrorException ex)

@@ -2,6 +2,16 @@
 
 <h2>Films</h2>
 
+<form asp-controller="Films" asp-action="GetAll" method="get">
+    <label for="sortby">Sort by:</label>
+    <select name="sortby" id="sortby">
+        <option value="Release">Release Date</option>
+        <option value="Director">Director</option>
+        <option value="Category">Category</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Sort</button>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -9,7 +19,7 @@
             <th>Name</th>
             <th>Director</th>
             <th>Release</th>
-            <th>Categories</th> 
+            <th>Categories</th>
         </tr>
     </thead>
     <tbody>
