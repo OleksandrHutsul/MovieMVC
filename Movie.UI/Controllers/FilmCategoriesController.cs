@@ -2,7 +2,6 @@
 using Movie.BL.Models;
 using Movie.BL.Services;
 using Movie.DAL.Extensions;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Movie.UI.Controllers
 {

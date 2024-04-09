@@ -111,6 +111,30 @@ namespace Movie.BL.Services
             }
         }
 
+        public async Task<ICollection<CategoriesDTO>> GetAllWithFilmsAsync()
+        {
+            var categories = await _repository.GetAllWithFilmsAsync();
+            var categoriesDTO = _mapper.Map<ICollection<CategoriesDTO>>(categories);
+
+            foreach (var categoryDTO in categoriesDTO)
+            {
+                var filmsCount = categories
+                    .Where(f => f.Id == categoryDTO.Id)
+                    .SelectMany(f => f.FilmCategories)
+                    .Count();
+
+                var parentCategoryId = categoryDTO.ParentCategoryId;
+                while (parentCategoryId.HasValue)
+                {
+                    parentCategoryId = categories.FirstOrDefault(c => c.Id == parentCategoryId)?.ParentCategoryId;
+                }
+
+                categoryDTO.FilmsCount = filmsCount;
+            }
+
+            return categoriesDTO;
+        }
+
         private string ExceptionMessage(object? value = null) =>
             value switch
             {

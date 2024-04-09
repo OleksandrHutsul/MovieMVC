@@ -8,5 +8,9 @@ namespace Movie.BL.Models
         [Required, MaxLength(200)]
         public string Name { get; set; }
         public int? ParentCategoryId { get; set; }
+
+        public List<string>? Films { get; set; }
+
+        public int FilmsCount { get; set; }
     }
 }

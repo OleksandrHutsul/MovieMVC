@@ -54,7 +54,7 @@ namespace Movie.UI.Controllers
         {
             try
             {
-                var films = await _service.GetAllAsync();
+                var films = await _service.GetAllWithCategoriesAsync();
                 return View(films);
             }
             catch (ServerErrorException ex)

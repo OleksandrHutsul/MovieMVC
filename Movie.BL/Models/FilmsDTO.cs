@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Movie.BL.Models
 {
@@ -11,5 +12,7 @@ namespace Movie.BL.Models
         public string Director { get; set; }
         [Required, DataType(DataType.Date)]
         public DateTime Release { get; set; }
+        
+        public List<string>? Categories { get; set; }
     }
 }

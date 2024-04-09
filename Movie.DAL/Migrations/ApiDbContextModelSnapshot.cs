@@ -40,7 +40,7 @@ namespace Movie.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Movie.DAL.Entities.FilmCategories", b =>
@@ -63,7 +63,7 @@ namespace Movie.DAL.Migrations
 
                     b.HasIndex("FilmsId");
 
-                    b.ToTable("FilmCategories");
+                    b.ToTable("FilmCategories", (string)null);
                 });
 
             modelBuilder.Entity("Movie.DAL.Entities.Films", b =>
@@ -89,7 +89,7 @@ namespace Movie.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Films");
+                    b.ToTable("Films", (string)null);
                 });
 
             modelBuilder.Entity("Movie.DAL.Entities.FilmCategories", b =>

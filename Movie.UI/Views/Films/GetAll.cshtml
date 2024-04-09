@@ -9,6 +9,7 @@
             <th>Name</th>
             <th>Director</th>
             <th>Release</th>
+            <th>Categories</th> 
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
                 <td>@item.Name</td>
                 <td>@item.Director</td>
                 <td>@item.Release</td>
+                <td>@string.Join(", ", item.Categories)</td>
             </tr>
         }
     </tbody>

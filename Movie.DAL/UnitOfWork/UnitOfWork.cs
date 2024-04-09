@@ -2,6 +2,7 @@
 using Movie.DAL.Repositories.Interfaces;
 using Movie.DAL.Repositories;
 using Movie.DAL.UnitOfWork.Interfaces;
+using Movie.DAL.Entities.Interfaces;
 
 namespace Movie.DAL.UnitOfWork
 {
@@ -16,7 +17,7 @@ namespace Movie.DAL.UnitOfWork
             _repositories = [];
         }
 
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class, IEntity
         {
             if (_repositories.ContainsKey(typeof(TEntity)))
             {

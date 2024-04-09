@@ -89,7 +89,9 @@ namespace Movie.BL.Services
                     throw new InvalidIdException(ExceptionMessage(editEntity.Id));
 
                 var tagExists = await _repository.Get()
-                    .AnyAsync(x => x.Name.ToUpper().Trim() == editEntity.Name.ToUpper().Trim());
+                    .AnyAsync(x => (x.Name.ToUpper().Trim() == editEntity.Name.ToUpper().Trim()) && 
+                    (x.Director.ToUpper().Trim() == editEntity.Director.ToUpper().Trim()) &&
+                    (x.Release == editEntity.Release));
 
                 if (tagExists)
                     throw new DuplicateItemException(ExceptionMessage(editEntity.Name));
@@ -117,6 +119,25 @@ namespace Movie.BL.Services
             {
                 throw new ServerErrorException(ex.Message, ex);
             }
+        }
+
+        public async Task<ICollection<FilmsDTO>> GetAllWithCategoriesAsync()
+        {
+            var films = await _repository.GetAllWithCategoriesAsync();
+            var filmsDTO = _mapper.Map<ICollection<FilmsDTO>>(films);
+
+            foreach (var filmDTO in filmsDTO)
+            {
+                var categories = films
+                    .Where(f => f.Id == filmDTO.Id)  
+                    .SelectMany(f => f.FilmCategories)  
+                    .Select(fc => fc.Categories.Name)  
+                    .ToList();
+
+                filmDTO.Categories = categories;
+            }
+
+            return filmsDTO;
         }
 
         private string ExceptionMessage(object? value = null) =>
